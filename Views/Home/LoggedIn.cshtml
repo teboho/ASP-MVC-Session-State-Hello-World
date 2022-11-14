@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+@if (this.Session["name"] != null)
+{
+    <div class="alert alert-success alert">
+        Logged in as @this.Session["name"], a @this.Session["type"]
+    </div>
+    <div>
+        @using (Html.BeginForm("LogOut", "Home", FormMethod.Get, null))
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-warning">Log Out</button>
+            
+        }
+    </div>
+}
+else
+    {
+    <div class="alert alert-danger">You are not Logged In</div>
+}

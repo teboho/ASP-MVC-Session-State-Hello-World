@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1 class="display-1">Testing Session State handling</h1>
+
+<div class="alert alert-info">
+    
+    @*<p>@ViewBag.Message</p>*@
+
+    @if (this.Session["name"] == null)
+    {
+        <span>Log in with your name below.</span>
+    }
+    else
+    {
+        <span>Logged in as @this.Session["name"].</span>
+    }
+</div>
+
+@if (this.Session["name"] == null)
+{
+    <div class="bg-light rounded m-2 p-2">
+        @using (Html.BeginForm("SaveState", "Home", FormMethod.Post, new { @class = "row g-3" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="col-md-6">
+                <label class="form-label-" for="name">Name</label>
+                <input class="form-control" id="name" type="text" name="name" placeholder="Name" required />
+                <div class="form-text">A name you want to be identified with on here.</div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="type">User type</label>
+                <select class="form-select" id="type" name="type" required>
+                    @*<option disabled hidden selected>Select Type</option>*@
+                    <option selected>Visitor</option>
+                    <option>Tester</option>
+                    <option>Manager</option>
+                </select>
+                <div class="form-text">The type visitor you are to this site.</div>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">Log In</button>
+            </div>
+        }
+    </div>
+}
