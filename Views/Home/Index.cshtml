@@ -20,7 +20,7 @@
 
 @if (this.Session["name"] == null)
 {
-    <div class="bg-light rounded m-2 p-2">
+    <div class="bg-light rounded m-2 p-3">
         @using (Html.BeginForm("SaveState", "Home", FormMethod.Post, new { @class = "row g-3" }))
         {
             @Html.AntiForgeryToken()
